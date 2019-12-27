@@ -9,7 +9,8 @@ export const DEFAULT_ROOT_STATE: IRootState = {
 	app: DEFAULT_APP_REDUCER
 };
 
-export const rootReducer = (history: History) => {
+// export const rootReducer = (history: History) => {
+export const rootReducer = () => {
 	return combineReducers({
 		app: appReducer,
 	});
