@@ -1,5 +1,8 @@
+import { TypedUseSelectorHook, useSelector } from "react-redux";
 import { combineReducers } from "redux";
-import { IAppReducer, DEFAULT_APP_REDUCER, appReducer } from "./app.reducer";
+import { appReducer, DEFAULT_APP_REDUCER, IAppReducer } from "./app.reducer";
+
+export const useTypedSelector: TypedUseSelectorHook<IRootState> = useSelector;
 
 export interface IRootState {
 	app: IAppReducer;
@@ -12,6 +15,6 @@ export const DEFAULT_ROOT_STATE: IRootState = {
 // export const rootReducer = (history: History) => {
 export const rootReducer = () => {
 	return combineReducers({
-		app: appReducer,
+		app: appReducer
 	});
 };

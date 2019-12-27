@@ -1,7 +1,7 @@
-
 import { createStore } from "redux";
 // import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage"; // defaults to localStorage for web and AsyncStorage for react-native
+// import storage from "redux-persist/lib/storage";
+// defaults to localStorage for web and AsyncStorage for react-native
 
 // import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
@@ -15,7 +15,13 @@ import { rootReducer } from "../reducers/";
 // };
 
 // const persistedReducer = persistReducer(persistConfig, rootReducer);
-export const store = createStore(rootReducer);
+
+/*NOTE: Here reducer is wrapped since it has been combined!
+Look into the '../reducers/' file where rootReducer is imported
+It needs to be uwraped by calling rootReducer()!*/
+// export const store = createStore(rootReducer);
+export const store = createStore(rootReducer());
+
 // const persistor = persistStore(store);
 
 // export { store, persistor };

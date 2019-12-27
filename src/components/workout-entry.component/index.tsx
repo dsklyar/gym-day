@@ -3,24 +3,15 @@ import { Image, StyleSheet, Text, View } from "react-native";
 
 interface IProps {
 	name: string;
-	img?: string;
-	last?: string;
+	exerciseCount: number;
 }
 
-export const ExerciseEntryComponent: React.FC<IProps> = ({ name, img, last }) => {
-	const icon = require("../../icons/dumbbell.png");
-	const lastRecord: number = 200;
-	const unitUsed: string = "lbs"; // Should be a Enum
+export const WorkoutEntryComponent: React.FC<IProps> = ({ name, exerciseCount }) => {
 	return (
 		<View style={styles.container}>
-			<Image source={icon} style={styles.image} />
 			<View style={styles.display}>
 				<Text>{name}</Text>
-				<View style={styles.lastRecord}>
-					<Text>Last Recorded:</Text>
-					<Text> {lastRecord} </Text>
-					<Text>{unitUsed}</Text>
-				</View>
+				<Text>{exerciseCount}</Text>
 			</View>
 		</View>
 	);
@@ -42,14 +33,6 @@ const styles = StyleSheet.create({
 		marginRight: 5,
 		marginTop: 2.5,
 		marginBottom: 2.5,
-		flexDirection: "row"
-	},
-	image: {
-		height: 50,
-		width: 50,
-		margin: 5
-	},
-	lastRecord: {
 		flexDirection: "row"
 	},
 	display: {}

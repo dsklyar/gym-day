@@ -1,6 +1,6 @@
+import { IExerciseEntry, IWorkoutEntry } from "@/interfaces";
 import { createAction } from "typesafe-actions";
 import { ActionTypes } from "./action-types";
-import { IExerciseEntry, IWorkoutEntry } from "@/interfaces";
 
 export const createExerciseAction = createAction(
 	ActionTypes.APP.CREATE_EXERCISE,

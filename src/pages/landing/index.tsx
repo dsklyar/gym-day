@@ -1,26 +1,28 @@
+import { ExerciseListComponent } from "@/components/exercise-list.component";
+import { statusBarHeight, usableHeight, windowWidth } from "@/dimensions";
+import { IExerciseEntry } from "@/interfaces";
+import { useTypedSelector } from "@/reducers";
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
-import { statusBarHeight, windowWidth, usableHeight } from "../../dimensions";
-import { ExerciseListComponent } from "../../components/exercise-list.component";
-import { ExerciseEntryData } from "../../tempData";
+import { StyleSheet, Text, View } from "react-native";
 
-
-export default function LandingPage() {
-
+export const LandingPage: React.FC = () => {
+	const data = useTypedSelector<IExerciseEntry[]>(
+		(state) => state.app.currentRoutine.workouts[0].exercises
+	);
 	return (
 		<View style={styles.container}>
 			<View style={styles.grip}>
 				<Text>March 20th, Leg Day</Text>
 			</View>
 			<View style={styles.list}>
-				<ExerciseListComponent data={ExerciseEntryData} />
+				<ExerciseListComponent data={data} />
 			</View>
 			<View style={styles.toolbar}>
 				<Text>March 20th, Leg Day</Text>
 			</View>
 		</View>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {

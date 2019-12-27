@@ -1,0 +1,13 @@
+build/**/*
+config/**/*
+coverage/**/*
+dist/**/*
+logs/**/*
+public/**/*
+scripts/**/*
+test-reports/**/*
+tsconfig.json
+ios/**/*
+android/**/*
+__tests__/**/*
+.expo/**/*
