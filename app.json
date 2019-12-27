@@ -3,11 +3,17 @@
 	"displayName": "Gym Day",
 	"expo": {
 		"name": "ReactNativeGymDay",
-		"slug": "expo-template-bare",
+		"slug": "gym-day",
 		"privacy": "unlisted",
 		"sdkVersion": "36.0.0",
 		"version": "1.0.0",
 		"entryPoint": "node_modules/expo/AppEntry.js",
-		"platforms": ["ios", "android", "web"]
+		"platforms": [
+			"android",
+			"web"
+		],
+		"android": {
+			"package": "com.teadayinc.gymday"
+		}
 	}
 }
