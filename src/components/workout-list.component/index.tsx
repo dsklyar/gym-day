@@ -8,11 +8,10 @@ interface IProps {
 }
 
 export const WorkoutListComponent: React.FC<IProps> = ({ data }) => {
-	const [items, setData] = useState<IWorkoutEntry[]>(data);
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={items}
+				data={data}
 				renderItem={({ item }) => (
 					<WorkoutEntryComponent name={item.name} exerciseCount={item.exercises.length} />
 				)}

@@ -7,7 +7,6 @@ module.exports = async function(env, argv) {
 	// If you want to add a new alias to the config.
 	// NOTE: This is needs to be set in order to get '@' working
 	config.resolve.alias["@"] = join(__dirname, "src/");
-	console.log(config.resolve.alias);
 
 	// Maybe you want to turn off compression in dev mode.
 	if (config.mode === "development") {

@@ -1,27 +1,26 @@
-import { createStore } from "redux";
-// import { persistStore, persistReducer } from "redux-persist";
-// import storage from "redux-persist/lib/storage";
-// defaults to localStorage for web and AsyncStorage for react-native
+import { DEFAULT_ROOT_STATE, IRootState, rootReducer } from "@/reducers";
+import { applyMiddleware, createStore, Middleware, Store, StoreEnhancer } from "redux";
+import { composeWithDevTools, EnhancerOptions } from "redux-devtools-extension";
+import { logger } from "redux-logger";
+// import { createEpicMiddleware, EpicMiddleware } from "redux-observable";
+// import rootEpic from "./epics";
 
-// import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
+export const configureStore = (): Store<IRootState> => {
+	// const epicMiddleware: EpicMiddleware<IAction, IAction, IStoreState> = createEpicMiddleware();
+	// const customRouterMiddleware: Middleware = routerMiddleware(history);
 
-import { rootReducer } from "../reducers/";
+	// TODO: Remove logging and tooling logic when in PROD mode
+	const enhancerOptions: EnhancerOptions = {
+		trace: true,
+		traceLimit: 50
+	};	
+	const middleware: Middleware[] = [logger];
+	const enhancers = composeWithDevTools(enhancerOptions);
 
-// const persistConfig = {
-// 	key: "root",
-// 	storage,
-// 	stateReconciler: autoMergeLevel2,
-// 	whitelist: ["payments"] // what is this gaian?
-// };
+	const storeEnhancer: StoreEnhancer = enhancers(applyMiddleware(...middleware));
+	const store = createStore(rootReducer(), DEFAULT_ROOT_STATE, storeEnhancer);
 
-// const persistedReducer = persistReducer(persistConfig, rootReducer);
+	// epicMiddleware.run(rootEpic);
 
-/*NOTE: Here reducer is wrapped since it has been combined!
-Look into the '../reducers/' file where rootReducer is imported
-It needs to be uwraped by calling rootReducer()!*/
-// export const store = createStore(rootReducer);
-export const store = createStore(rootReducer());
-
-// const persistor = persistStore(store);
-
-// export { store, persistor };
+	return store;
+};

@@ -1,14 +1,28 @@
+import actions from "@/actions";
+import { MenuBarComponent } from "@/components/menu-bar.component";
 import { WorkoutListComponent } from "@/components/workout-list.component";
 import { statusBarHeight, usableHeight, windowWidth } from "@/dimensions";
 import { IWorkoutEntry } from "@/interfaces";
 import { useTypedSelector } from "@/reducers";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
 
 export const LandingPage: React.FC = () => {
+	const dispatch = useDispatch();
 	const data = useTypedSelector<IWorkoutEntry[]>(
 		(state) => state.app.currentRoutine.workouts
 	);
+	const createExerciseActionMemo = useCallback(():void => {
+		dispatch(actions.App.createWorkoutAction({ name: "gold", exercises: [] }));
+	}, [dispatch]);
+
+	useEffect(() => {
+		return () => {
+			// clean up
+		};
+	});
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.grip}>
@@ -17,9 +31,7 @@ export const LandingPage: React.FC = () => {
 			<View style={styles.list}>
 				<WorkoutListComponent data={data} />
 			</View>
-			<View style={styles.toolbar}>
-				<Text>March 20th, Leg Day</Text>
-			</View>
+			<MenuBarComponent onClick={createExerciseActionMemo}/>
 		</View>
 	);
 };

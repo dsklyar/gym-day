@@ -1,6 +1,6 @@
 import { ActionTypes } from "@/actions/action-types";
 import { DEFAULT_ROUTINE } from "@/constants";
-import { IRoutine } from "@/interfaces";
+import { IRoutine, IWorkoutEntry } from "@/interfaces";
 import { Reducer } from "redux";
 
 export interface IAppReducer {
@@ -17,6 +17,16 @@ export const appReducer: Reducer<IAppReducer, IAction> = (state = DEFAULT_APP_RE
 	switch (action.type) {
 		case ActionTypes.APP.CREATE_EXERCISE: {
 			return state;
+		}
+		case ActionTypes.APP.CREATE_WORKOUT: {
+			const workout: IWorkoutEntry = { ...action.payload };
+			return {
+				...state,
+				currentRoutine: {
+					...state.currentRoutine,
+					workouts: [workout, ...state.currentRoutine.workouts]
+				}
+			};
 		}
 		default:
 			return state;
