@@ -1,10 +1,23 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
   "plugins": [
-    ["module-resolver", {
-      "alias": {
-        "@": "./src"
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "@": "./src"
+        }
       }
-    }]
+    ],
+    [
+      "babel-plugin-styled-components",
+      { // https://www.styled-components.com/docs/tooling
+        "displayName": true,
+        // Dead code removal
+        "pure": true
+      }
+    ]
   ]
 }
