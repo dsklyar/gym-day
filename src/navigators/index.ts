@@ -4,20 +4,32 @@ import { LandingScreen } from "@/screens/landing";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 
-const AppNavigator = createStackNavigator({
-	Landing: {
-		screen: LandingScreen,
+export enum SCREEN_ROUTES {
+	Landing = "Landing",
+	Home = "Home",
+	AddWorkout = "AddWorkout",
+	AddExercise = "AddExercise",
+	Profile = "Profile",
+	Settigns = "Settings"
+}
+
+const AppNavigator = createStackNavigator(
+	{
+		[SCREEN_ROUTES.Landing]: {
+			screen: LandingScreen
+		},
+		// NOTE: Route shorthand
+		[SCREEN_ROUTES.Home]: HomeScreen,
+		AddWorkout: AddWorkoutScreen
 	},
-	// NOTE: Route shorthand
-	Home: HomeScreen,
-	AddWorkout: AddWorkoutScreen
-}, {
-	// NOTE: Config
-	initialRouteName: "Landing",
-	// NOTE: Remove NavBar by default
-	defaultNavigationOptions: {
-		header: null
+	{
+		// NOTE: Config
+		initialRouteName: "Landing",
+		// NOTE: Remove NavBar by default
+		defaultNavigationOptions: {
+			header: null
+		}
 	}
-});
+);
 
 export const AppContainer = createAppContainer(AppNavigator);
