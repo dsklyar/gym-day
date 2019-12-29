@@ -1,4 +1,4 @@
-import actions from "@/actions";
+// import actions from "@/actions";
 import { MenuBarComponent } from "@/components/menu-bar.component";
 import { WorkoutListComponent } from "@/components/workout-list.component";
 import { statusBarHeight, usableHeight, windowWidth } from "@/dimensions";
@@ -8,18 +8,17 @@ import { useTypedSelector } from "@/reducers";
 import React, { useCallback, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "react-navigation-hooks";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 export const LandingScreen: React.FC = () => {
 	const navigation = useNavigation();
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const data = useTypedSelector<IWorkoutEntry[]>(
 		(state) => state.app.currentRoutine.workouts
 	);
-	const createExerciseActionMemo = useCallback((): void => {
+	const createNewWorkout = useCallback((): void => {
 		navigation.push(SCREEN_ROUTES.AddWorkout);
-		// dispatch(actions.App.createWorkoutAction({ name: "gold", exercises: [] }));
-	}, [dispatch]);
+	}, [navigation]);
 
 	useEffect(() => {
 		return () => {
@@ -35,7 +34,7 @@ export const LandingScreen: React.FC = () => {
 			<View style={styles.list}>
 				<WorkoutListComponent data={data} />
 			</View>
-			<MenuBarComponent onClick={createExerciseActionMemo} />
+			<MenuBarComponent onClick={createNewWorkout} />
 		</View>
 	);
 };
