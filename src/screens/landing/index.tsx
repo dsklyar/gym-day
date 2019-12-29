@@ -8,7 +8,7 @@ import React, { useCallback, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 
-export const LandingPage: React.FC = () => {
+export const LandingScreen: React.FC = () => {
 	const dispatch = useDispatch();
 	const data = useTypedSelector<IWorkoutEntry[]>(
 		(state) => state.app.currentRoutine.workouts
