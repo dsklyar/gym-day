@@ -8,12 +8,12 @@ interface IProps {
 }
 
 export const ExerciseListComponent: React.FC<IProps> = ({ data }) => {
-	const [items, setData] = useState<IExerciseEntry[]>(data);
 	return (
 		<View style={styles.container}>
 			<FlatList
-				data={items}
-				renderItem={({ item }) => <ExerciseEntryComponent name={item.name} />}
+				data={data}
+				renderItem={({ item, index }) =>
+					<ExerciseEntryComponent key={`exrc-${index}`} name={item.name} />}
 			/>
 		</View>
 	);
